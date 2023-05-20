@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Persona</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Registrar Persona</h1>
+  <form id="formulario">
+    <div class="campo">
+      <label for="nombreInput">Nombre:</label>
+      <input type="text" id="nombreInput" required>
+    </div>
+    <div class="campo">
+      <label for="rutInput">RUT:</label>
+      <input type="text" id="rutInput" required>
+    </div>
+    <div class="campo">
+      <label for="alturaInput">Altura (cm):</label>
+      <input type="number" id="alturaInput" required>
+    </div>
+    <div class="campo">
+      <label for="fechaNacimientoInput">Fecha de Nacimiento:</label>
+      <input type="date" id="fechaNacimientoInput" required>
+    </div>
+    <div class="campo">
+      <label for="direccionInput">Dirección:</label>
+      <input type="text" id="direccionInput" required>
+    </div>
+    <div class="campo">
+      <label for="telefonoInput">Teléfono:</label>
+      <input type="tel" id="telefonoInput" required>
+    </div>
+    <button type="submit">Registrar</button>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>
