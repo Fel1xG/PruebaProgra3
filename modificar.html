@@ -3,31 +3,28 @@
 <head>
   <title>Modificar</title>
   <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
 </head>
 <body>
-  <h1>Modificar</h1>
+  <h1>Modificar Registro</h1>
   <form id="modificarForm">
-    <label for="id">ID del registro a modificar:</label>
-    <input type="number" id="id" required><br>
-
     <label for="nombre">Nuevo nombre:</label>
     <input type="text" id="nombre" required><br>
-
+  
     <label for="correo">Nuevo correo:</label>
     <input type="email" id="correo" required><br>
-
+  
     <label for="telefono">Nuevo teléfono:</label>
     <input type="tel" id="telefono" required><br>
-
+  
     <label for="busquedaCiudad">Buscar ciudad:</label>
-    <input type="text" id="busquedaCiudad" oninput="mostrarSugerencias()" placeholder="Buscar ciudad...">
+    <input type="text" id="busquedaCiudad" oninput="mostrarSugerencias()" placeholder="Buscar nueva ciudad...">
     <div id="sugerenciasCiudad"></div>
-      <!-- Las opciones de ciudad se generarán dinámicamente -->
+    <!-- Las opciones de ciudad se generarán dinámicamente -->
     </select><br>
-
+  
     <button type="button" onclick="modificar()">Modificar</button>
-  </form>
-
+  </form>  
   <script src="script.js"></script>
 </body>
 </html>

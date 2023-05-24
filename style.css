@@ -42,166 +42,102 @@ nav ul li a:hover {
 
 /* Estilos específicos de las páginas */
 
-/* Registrar */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-}
-
-form {
+/* Eliminar */
+form#eliminarForm {
   max-width: 400px;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-label {
+/* Modificar */
+form#modificarForm {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mostrar */
+button#mostrarTodoBtn {
   display: block;
-  margin-bottom: 10px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#registros {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#registros p {
+  margin: 10px 0;
+}
+
+/* Registrar */
+form#registroForm {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
   width: 100%;
-  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
 }
 
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #4caf50;
+button[type="button"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
-button:hover {
+button[type="button"]:hover {
   background-color: #45a049;
 }
 
-/* Estilos específicos para las sugerencias de ciudad */
 #sugerenciasCiudad {
-  margin-top: 10px;
-  max-height: 200px;
-  overflow-y: auto;
+  display: none;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: #f9f9f9;
   padding: 5px;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 #sugerenciasCiudad p {
-  margin: 5px 0;
-  padding: 5px;
   cursor: pointer;
+  padding: 5px;
 }
 
 #sugerenciasCiudad p:hover {
-  background-color: #f2f2f2;
-}
-
-
-/* Eliminar */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-}
-
-form {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #f44336;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #e53935;
-}
-
-/* Modificar */
-.modificar-formulario {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-}
-
-.modificar-formulario label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.modificar-formulario input[type="text"],
-.modificar-formulario select {
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-.modificar-formulario button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-/* Mostrar Todo */
-.mostrar-todo {
-  max-width: 600px;
-  margin: 20px auto;
-}
-
-.mostrar-todo .registro {
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px;
+  background-color: #f4f4f4;
 }
