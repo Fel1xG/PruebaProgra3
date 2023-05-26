@@ -10,28 +10,5 @@
   <h1>Mostrar Todo</h1>
   <button type="button" onclick="mostrarTodo()">Mostrar Todos los Registros</button>
   <div id="registros"></div>
-
-  <script>
-    // Función para mostrar todos los registros
-    function mostrarTodo() {
-      // Obtener el elemento div donde se mostrarán los registros
-      var registrosDiv = document.getElementById("registros");
-
-      // Limpiar el contenido del div antes de mostrar los registros
-      registrosDiv.innerHTML = "";
-
-      // Recorrer el arreglo de registros y mostrar cada uno en el div
-      for (var i = 0; i < registros.length; i++) {
-        var registro = registros[i];
-
-        // Crear un elemento <p> para mostrar el registro
-        var registroP = document.createElement("p");
-        registroP.textContent = "ID: " + registro.id + ", Nombre: " + registro.nombre + ", Correo: " + registro.correo + ", Teléfono: " + registro.telefono + ", Ciudad: " + registro.ciudad;
-
-        // Agregar el elemento <p> al div de registros
-        registrosDiv.appendChild(registroP);
-      }
-    }
-  </script>
 </body>
 </html>

@@ -5,11 +5,13 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f2f2f2;
 }
 
 h1 {
   text-align: center;
   margin: 20px 0;
+  color: #333;
 }
 
 nav {
@@ -42,8 +44,12 @@ nav ul li a:hover {
 
 /* Estilos específicos de las páginas */
 
-/* Eliminar */
-form#eliminarForm {
+/* Formularios */
+form#eliminarForm,
+form#modificarForm,
+button#mostrarTodoBtn,
+#registros p,
+form#registroForm {
   max-width: 400px;
   margin: 0 auto;
   background-color: #fff;
@@ -53,18 +59,6 @@ form#eliminarForm {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Modificar */
-form#modificarForm {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Mostrar */
 button#mostrarTodoBtn {
   display: block;
   margin: 20px auto;
@@ -78,12 +72,6 @@ button#mostrarTodoBtn {
 
 #registros {
   max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #registros p {
@@ -92,36 +80,64 @@ button#mostrarTodoBtn {
 
 /* Registrar */
 form#registroForm {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-image: url('burbujas.png'); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
-input[type="text"],
-input[type="email"],
-input[type="tel"] {
+form#registroForm input[type="text"],
+form#registroForm input[type="email"],
+form#registroForm input[type="tel"],
+form#eliminarForm input[type="text"],
+form#eliminarForm input[type="email"],
+form#eliminarForm input[type="tel"],
+form#modificarForm input[type="text"],
+form#modificarForm input[type="email"],
+form#modificarForm input[type="tel"],
+button#mostrarTodoBtn {
   width: 100%;
+  max-width: 300px;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 8px;
   margin-bottom: 10px;
   border-radius: 3px;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-button[type="button"] {
-  padding: 10px 20px;
+form#registroForm input[type="text"]:focus,
+form#registroForm input[type="email"]:focus,
+form#registroForm input[type="tel"]:focus,
+form#eliminarForm input[type="text"]:focus,
+form#eliminarForm input[type="email"]:focus,
+form#eliminarForm input[type="tel"]:focus,
+form#modificarForm input[type="text"]:focus,
+form#modificarForm input[type="email"]:focus,
+form#modificarForm input[type="tel"]:focus,
+button#mostrarTodoBtn:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+button#mostrarTodoBtn {
   background-color: #4CAF50;
+  color: #fff;
+}
+
+form#registroForm button[type="button"],
+form#eliminarForm button[type="button"],
+form#modificarForm button[type="button"] {
+  padding: 10px 20px;
+  background-color: #ff8c00;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-button[type="button"]:hover {
-  background-color: #45a049;
+form#registroForm button[type="button"]:hover,
+form#eliminarForm button[type="button"]:hover,
+form#modificarForm button[type="button"]:hover {
+  background-color: #ff6a00;
 }
 
 #sugerenciasCiudad {
@@ -140,4 +156,38 @@ button[type="button"]:hover {
 
 #sugerenciasCiudad p:hover {
   background-color: #f4f4f4;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #ff6a00;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff8c00;
+}
+
+#registros {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

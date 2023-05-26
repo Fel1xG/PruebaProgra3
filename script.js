@@ -110,6 +110,50 @@ function eliminar() {
   guardarRegistrosEnLocalStorage();
 }
 
+// Función para modificar un registro por ID
+function modificar() {
+  const id = parseInt(document.getElementById('idModificacion').value);
+
+  const nombreElement = document.getElementById('nombre');
+  const correoElement = document.getElementById('correo');
+  const telefonoElement = document.getElementById('telefono');
+  const busquedaCiudadElement = document.getElementById('busquedaCiudad');
+  const direccionElement = document.getElementById('direccion');
+
+  const nombre = nombreElement.value.trim();
+  const correo = correoElement.value.trim();
+  const telefono = telefonoElement.value.trim();
+  const ciudad = busquedaCiudadElement.value.trim();
+  const direccion = direccionElement.value.trim();
+
+  if (nombre === '' || correo === '' || telefono === '' || ciudad === '' || direccion === '') {
+    console.log('Todos los campos son requeridos.');
+    return;
+  }
+
+  const registroModificado = {
+    id: id,
+    nombre: nombre,
+    correo: correo,
+    telefono: telefono,
+    ciudad: ciudad,
+    direccion: direccion
+  };
+
+  registros = registros.map(registro => registro.id === id ? registroModificado : registro);
+  console.log(`Registro con ID ${id} modificado:`);
+  console.log(registroModificado);
+
+  // Limpiar los campos del formulario
+  nombreElement.value = '';
+  correoElement.value = '';
+  telefonoElement.value = '';
+  busquedaCiudadElement.value = '';
+  direccionElement.value = '';
+
+  guardarRegistrosEnLocalStorage();
+}
+
 // Función para mostrar todos los registros en el HTML
 function mostrarTodoEnHTML() {
   const registrosContainer = document.getElementById('registrosContainer');
@@ -157,9 +201,9 @@ var ciudadesChile = [
 
 // Función para mostrar las sugerencias de ciudades según la inicial ingresada
 function mostrarSugerencias() {
-  var input = document.getElementById('busquedaCiudad');
-  var filter = input.value.toUpperCase();
-  var sugerenciasDiv = document.getElementById('sugerenciasCiudad');
+  const input = document.getElementById('busquedaCiudad');
+  const filter = input.value.toUpperCase();
+  const sugerenciasDiv = document.getElementById('sugerenciasCiudad');
 
   if (filter === '') {
     sugerenciasDiv.style.display = 'none'; // Oculta el div si no hay texto
@@ -169,10 +213,10 @@ function mostrarSugerencias() {
   sugerenciasDiv.style.display = 'block'; // Muestra el div si hay texto
   sugerenciasDiv.innerHTML = '';
 
-  for (var i = 0; i < ciudadesChile.length; i++) {
-    var ciudad = ciudadesChile[i];
+  for (let i = 0; i < ciudadesChile.length; i++) {
+    const ciudad = ciudadesChile[i];
     if (ciudad.toUpperCase().startsWith(filter)) {
-      var sugerencia = document.createElement('p');
+      const sugerencia = document.createElement('p');
       sugerencia.textContent = ciudad;
       sugerencia.addEventListener('click', seleccionarCiudad);
       sugerenciasDiv.appendChild(sugerencia);
@@ -182,16 +226,37 @@ function mostrarSugerencias() {
 
 // Función para seleccionar una ciudad del formulario
 function seleccionarCiudad(event) {
-  var ciudadSeleccionada = event.target.textContent;
+  const ciudadSeleccionada = event.target.textContent;
   document.getElementById('busquedaCiudad').value = ciudadSeleccionada;
   document.getElementById('sugerenciasCiudad').style.display = 'none'; // Oculta el div al seleccionar una ciudad
 }
 
 // Ejecutar las funciones necesarias al cargar la página
 window.addEventListener('DOMContentLoaded', function() {
-  var input = document.getElementById('busquedaCiudad');
+  const input = document.getElementById('busquedaCiudad');
   input.addEventListener('keyup', mostrarSugerencias);
   input.addEventListener('focus', mostrarSugerencias);
 
   mostrarTodoEnHTML();
 });
+
+// Función para mostrar todos los registros
+function mostrarTodo() {
+  // Obtener el elemento div donde se mostrarán los registros
+  var registrosDiv = document.getElementById("registros");
+
+  // Limpiar el contenido del div antes de mostrar los registros
+  registrosDiv.innerHTML = "";
+
+  // Recorrer el arreglo de registros y mostrar cada uno en el div
+  for (var i = 0; i < registros.length; i++) {
+    var registro = registros[i];
+
+    // Crear un elemento <p> para mostrar el registro
+    var registroP = document.createElement("p");
+    registroP.textContent = "ID: " + registro.id + ", Nombre: " + registro.nombre + ", Correo: " + registro.correo + ", Teléfono: " + registro.telefono + ", Ciudad: " + registro.ciudad;
+
+    // Agregar el elemento <p> al div de registros
+    registrosDiv.appendChild(registroP);
+  }
+}
