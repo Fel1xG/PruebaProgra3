@@ -158,6 +158,7 @@ form#modificarForm button[type="button"]:hover {
   background-color: #f4f4f4;
 }
 
+/* Estilos adicionales para Mostrar Todo */
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
@@ -185,9 +186,31 @@ button:hover {
   background-color: #ff8c00;
 }
 
-#registros {
+#registrosContainer {
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.genero-container {
+  background-color: #f9f9f9;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.genero-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.genero-buttons label {
+  margin-right: 10px;
+}
+
+.genero-buttons input[type="radio"] {
+  margin-right: 5px;
 }

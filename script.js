@@ -60,6 +60,8 @@ function registrar() {
   const telefonoElement = document.getElementById('telefono');
   const busquedaCiudadElement = document.getElementById('busquedaCiudad');
   const direccionElement = document.getElementById('direccion');
+  const generoMasculinoElement = document.getElementById('genero-masculino');
+  const generoFemeninoElement = document.getElementById('genero-femenino');
 
   // Obtener los valores de los elementos de formulario
   const nombre = nombreElement.value.trim();
@@ -67,6 +69,7 @@ function registrar() {
   const telefono = telefonoElement.value.trim();
   const ciudad = busquedaCiudadElement.value.trim();
   const direccion = direccionElement.value.trim();
+  const genero = generoMasculinoElement.checked ? 'masculino' : 'femenino';
 
   // Verificar que los campos no estén vacíos
   if (nombre === '' || correo === '' || telefono === '' || ciudad === '' || direccion === '') {
@@ -80,7 +83,8 @@ function registrar() {
     correo: correo,
     telefono: telefono,
     ciudad: ciudad,
-    direccion: direccion
+    direccion: direccion,
+    genero: genero
   };
 
   registros.push(nuevoRegistro);
@@ -96,6 +100,8 @@ function registrar() {
   telefonoElement.value = '';
   busquedaCiudadElement.value = '';
   direccionElement.value = '';
+  generoMasculinoElement.checked = false;
+  generoFemeninoElement.checked = false;
 
   guardarRegistrosEnLocalStorage();
 }
@@ -119,12 +125,15 @@ function modificar() {
   const telefonoElement = document.getElementById('telefono');
   const busquedaCiudadElement = document.getElementById('busquedaCiudad');
   const direccionElement = document.getElementById('direccion');
+  const generoMasculinoElement = document.getElementById('genero-masculino');
+  const generoFemeninoElement = document.getElementById('genero-femenino');
 
   const nombre = nombreElement.value.trim();
   const correo = correoElement.value.trim();
   const telefono = telefonoElement.value.trim();
   const ciudad = busquedaCiudadElement.value.trim();
   const direccion = direccionElement.value.trim();
+  const genero = generoMasculinoElement.checked ? 'masculino' : 'femenino';
 
   if (nombre === '' || correo === '' || telefono === '' || ciudad === '' || direccion === '') {
     console.log('Todos los campos son requeridos.');
@@ -137,7 +146,8 @@ function modificar() {
     correo: correo,
     telefono: telefono,
     ciudad: ciudad,
-    direccion: direccion
+    direccion: direccion,
+    genero: genero
   };
 
   registros = registros.map(registro => registro.id === id ? registroModificado : registro);
@@ -150,6 +160,8 @@ function modificar() {
   telefonoElement.value = '';
   busquedaCiudadElement.value = '';
   direccionElement.value = '';
+  generoMasculinoElement.checked = false;
+  generoFemeninoElement.checked = false;
 
   guardarRegistrosEnLocalStorage();
 }
@@ -179,6 +191,10 @@ function mostrarTodoEnHTML() {
     telefonoP.textContent = `Teléfono: ${registro.telefono}`;
     registroDiv.appendChild(telefonoP);
 
+    const generoP = document.createElement('p');
+    generoP.textContent = `Género: ${registro.genero}`;
+    registroDiv.appendChild(generoP);
+
     const ciudadP = document.createElement('p');
     ciudadP.textContent = `Ciudad: ${registro.ciudad}`;
     registroDiv.appendChild(ciudadP);
@@ -191,54 +207,16 @@ function mostrarTodoEnHTML() {
   });
 }
 
-// Lista de ciudades de Chile
-var ciudadesChile = [
-  'Caldera', 'Copiapó', 'Tierra Amarilla', 'Santiago', 'Valparaíso',
-  'Concepción', 'Viña del Mar', 'Antofagasta', 'Valdivia', 'La Serena',
-  'Iquique', 'Rancagua', 'Talca', 'Arica', 'Chillán', 'Puerto Montt',
-  'Osorno', 'Coquimbo', 'Temuco', 'Punta Arenas'
-];
 
-// Función para mostrar las sugerencias de ciudades según la inicial ingresada
-function mostrarSugerencias() {
-  const input = document.getElementById('busquedaCiudad');
-  const filter = input.value.toUpperCase();
-  const sugerenciasDiv = document.getElementById('sugerenciasCiudad');
-
-  if (filter === '') {
-    sugerenciasDiv.style.display = 'none'; // Oculta el div si no hay texto
-    return;
-  }
-
-  sugerenciasDiv.style.display = 'block'; // Muestra el div si hay texto
-  sugerenciasDiv.innerHTML = '';
-
-  for (let i = 0; i < ciudadesChile.length; i++) {
-    const ciudad = ciudadesChile[i];
-    if (ciudad.toUpperCase().startsWith(filter)) {
-      const sugerencia = document.createElement('p');
-      sugerencia.textContent = ciudad;
-      sugerencia.addEventListener('click', seleccionarCiudad);
-      sugerenciasDiv.appendChild(sugerencia);
-    }
+// Función para cargar los registros desde el almacenamiento local y mostrarlos en el HTML
+function cargarRegistrosDesdeLocalStorage() {
+  if (localStorage.getItem('registros')) {
+    registros = JSON.parse(localStorage.getItem('registros'));
+    idRegistro = parseInt(localStorage.getItem('idRegistro'));
+    mostrarTodoEnHTML();
   }
 }
 
-// Función para seleccionar una ciudad del formulario
-function seleccionarCiudad(event) {
-  const ciudadSeleccionada = event.target.textContent;
-  document.getElementById('busquedaCiudad').value = ciudadSeleccionada;
-  document.getElementById('sugerenciasCiudad').style.display = 'none'; // Oculta el div al seleccionar una ciudad
-}
-
-// Ejecutar las funciones necesarias al cargar la página
-window.addEventListener('DOMContentLoaded', function() {
-  const input = document.getElementById('busquedaCiudad');
-  input.addEventListener('keyup', mostrarSugerencias);
-  input.addEventListener('focus', mostrarSugerencias);
-
-  mostrarTodoEnHTML();
-});
 
 // Función para mostrar todos los registros
 function mostrarTodo() {
@@ -254,9 +232,25 @@ function mostrarTodo() {
 
     // Crear un elemento <p> para mostrar el registro
     var registroP = document.createElement("p");
-    registroP.textContent = "ID: " + registro.id + ", Nombre: " + registro.nombre + ", Correo: " + registro.correo + ", Teléfono: " + registro.telefono + ", Ciudad: " + registro.ciudad;
+    registroP.textContent = "ID: " + registro.id + ", Nombre: " + registro.nombre + ", Correo: " + registro.correo + ", Teléfono: " + registro.telefono + ", Ciudad: " + registro.ciudad + ", Dirección: " + registro.direccion;
 
     // Agregar el elemento <p> al div de registros
     registrosDiv.appendChild(registroP);
   }
 }
+
+
+// Evento para mostrar sugerencias de autocompletado al escribir en el campo de búsqueda de ciudad
+document.getElementById('busquedaCiudad').addEventListener('input', mostrarSugerencias);
+
+// Evento para registrar un nuevo objeto al hacer clic en el botón "Registrar"
+document.getElementById('registrarBtn').addEventListener('click', registrar);
+
+// Evento para eliminar un registro al hacer clic en el botón "Eliminar"
+document.getElementById('eliminarBtn').addEventListener('click', eliminar);
+
+// Evento para modificar un registro al hacer clic en el botón "Modificar"
+document.getElementById('modificarBtn').addEventListener('click', modificar);
+
+// Cargar los registros desde el almacenamiento local al cargar la página
+cargarRegistrosDesdeLocalStorage();
