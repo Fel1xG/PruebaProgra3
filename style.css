@@ -214,3 +214,12 @@ button:hover {
 .genero-buttons input[type="radio"] {
   margin-right: 5px;
 }
+
+#direccion {
+  resize: none;
+  width: 300px;
+  height: 120px;
+  overflow: hidden;
+}
+
+
