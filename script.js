@@ -1,11 +1,13 @@
 // Registro de datos
 let registros = localStorage.getItem('registros') ? JSON.parse(localStorage.getItem('registros')) : [];
 let idRegistro = localStorage.getItem('idRegistro') ? parseInt(localStorage.getItem('idRegistro')) : 1;
+let registrosEliminados = localStorage.getItem('registrosEliminados') ? JSON.parse(localStorage.getItem('registrosEliminados')) : [];
 
 // Función para guardar los registros en el almacenamiento local
 function guardarRegistrosEnLocalStorage() {
   localStorage.setItem('registros', JSON.stringify(registros));
   localStorage.setItem('idRegistro', idRegistro.toString());
+  localStorage.setItem('registrosEliminados', JSON.stringify(registrosEliminados));
 }
 
 // Función para obtener los datos de autocompletado
@@ -104,16 +106,92 @@ function registrar() {
   generoFemeninoElement.checked = false;
 
   guardarRegistrosEnLocalStorage();
+
+  // Mostrar todos los registros en el HTML
+  mostrarTodoEnHTML();
 }
 
 // Función para eliminar un registro por ID
 function eliminar() {
   const id = parseInt(document.getElementById('id').value);
 
-  registros = registros.filter(registro => registro.id !== id);
-  console.log(`Registro con ID ${id} eliminado.`);
+  const registroEliminado = registros.find(registro => registro.id === id);
+  if (!registroEliminado) {
+    mostrarMensajeEliminacion(`No se encontró ningún registro con el ID ${id}.`);
+    return;
+  }
 
+  registros = registros.filter(registro => registro.id !== id);
+  registrosEliminados.push(registroEliminado);
   guardarRegistrosEnLocalStorage();
+
+  // Volver a mostrar los IDs registrados en el campo de entrada del ID
+  mostrarIDsRegistrados();
+
+  mostrarMensajeEliminacion(`Registro con ID ${id} eliminado correctamente.`);
+
+  // Mostrar todos los registros en el HTML
+  mostrarTodoEnHTML();
+}
+
+// Función para mostrar todos los registros en el HTML
+function mostrarTodoEnHTML() {
+  const registrosContainer = document.getElementById('registrosContainer');
+  registrosContainer.innerHTML = '';
+
+  registros.forEach(registro => {
+    const registroDiv = document.createElement('div');
+    registroDiv.classList.add('registro');
+
+    const idP = document.createElement('p');
+    idP.textContent = `ID: ${registro.id}`;
+
+    const nombreP = document.createElement('p');
+    nombreP.textContent = `Nombre: ${registro.nombre}`;
+
+    const correoP = document.createElement('p');
+    correoP.textContent = `Correo: ${registro.correo}`;
+
+    const telefonoP = document.createElement('p');
+    telefonoP.textContent = `Teléfono: ${registro.telefono}`;
+
+    const ciudadP = document.createElement('p');
+    ciudadP.textContent = `Ciudad: ${registro.ciudad}`;
+
+    const direccionP = document.createElement('p');
+    direccionP.textContent = `Dirección: ${registro.direccion}`;
+
+    const generoP = document.createElement('p');
+    generoP.textContent = `Género: ${registro.genero}`;
+
+    registroDiv.appendChild(idP);
+    registroDiv.appendChild(nombreP);
+    registroDiv.appendChild(correoP);
+    registroDiv.appendChild(telefonoP);
+    registroDiv.appendChild(ciudadP);
+    registroDiv.appendChild(direccionP);
+    registroDiv.appendChild(generoP);
+
+    registrosContainer.appendChild(registroDiv);
+  });
+}
+
+// Función para mostrar el mensaje de eliminación en el HTML
+function mostrarMensajeEliminacion(mensaje) {
+  const mensajeEliminacionElement = document.getElementById('mensajeEliminacion');
+  mensajeEliminacionElement.textContent = mensaje;
+}
+
+// Función para mostrar los IDs registrados en el campo de entrada del ID
+function mostrarIDsRegistrados() {
+  const idElement = document.getElementById('id');
+  idElement.innerHTML = '';
+
+  registros.forEach(registro => {
+    const option = document.createElement('option');
+    option.value = registro.id;
+    idElement.appendChild(option);
+  });
 }
 
 // Función para modificar un registro por ID
@@ -164,93 +242,33 @@ function modificar() {
   generoFemeninoElement.checked = false;
 
   guardarRegistrosEnLocalStorage();
+
+  // Mostrar todos los registros en el HTML
+  mostrarTodoEnHTML();
 }
 
-// Función para mostrar todos los registros en el HTML
-function mostrarTodoEnHTML() {
-  const registrosContainer = document.getElementById('registrosContainer');
-  registrosContainer.innerHTML = '';
-
-  registros.forEach(registro => {
-    const registroDiv = document.createElement('div');
-    registroDiv.classList.add('registro');
-
-    const idP = document.createElement('p');
-    idP.textContent = `ID: ${registro.id}`;
-    registroDiv.appendChild(idP);
-
-    const nombreP = document.createElement('p');
-    nombreP.textContent = `Nombre: ${registro.nombre}`;
-    registroDiv.appendChild(nombreP);
-
-    const correoP = document.createElement('p');
-    correoP.textContent = `Correo: ${registro.correo}`;
-    registroDiv.appendChild(correoP);
-
-    const telefonoP = document.createElement('p');
-    telefonoP.textContent = `Teléfono: ${registro.telefono}`;
-    registroDiv.appendChild(telefonoP);
-
-    const generoP = document.createElement('p');
-    generoP.textContent = `Género: ${registro.genero}`;
-    registroDiv.appendChild(generoP);
-
-    const ciudadP = document.createElement('p');
-    ciudadP.textContent = `Ciudad: ${registro.ciudad}`;
-    registroDiv.appendChild(ciudadP);
-
-    const direccionP = document.createElement('p');
-    direccionP.textContent = `Dirección: ${registro.direccion}`;
-    registroDiv.appendChild(direccionP);
-
-    registrosContainer.appendChild(registroDiv);
-  });
-}
-
-
-// Función para cargar los registros desde el almacenamiento local y mostrarlos en el HTML
-function cargarRegistrosDesdeLocalStorage() {
-  if (localStorage.getItem('registros')) {
-    registros = JSON.parse(localStorage.getItem('registros'));
-    idRegistro = parseInt(localStorage.getItem('idRegistro'));
-    mostrarTodoEnHTML();
-  }
-}
-
-
-// Función para mostrar todos los registros
-function mostrarTodo() {
-  // Obtener el elemento div donde se mostrarán los registros
-  var registrosDiv = document.getElementById("registros");
-
-  // Limpiar el contenido del div antes de mostrar los registros
-  registrosDiv.innerHTML = "";
-
-  // Recorrer el arreglo de registros y mostrar cada uno en el div
-  for (var i = 0; i < registros.length; i++) {
-    var registro = registros[i];
-
-    // Crear un elemento <p> para mostrar el registro
-    var registroP = document.createElement("p");
-    registroP.textContent = "ID: " + registro.id + ", Nombre: " + registro.nombre + ", Correo: " + registro.correo + ", Teléfono: " + registro.telefono + ", Ciudad: " + registro.ciudad + ", Dirección: " + registro.direccion;
-
-    // Agregar el elemento <p> al div de registros
-    registrosDiv.appendChild(registroP);
-  }
-}
-
-
-// Evento para mostrar sugerencias de autocompletado al escribir en el campo de búsqueda de ciudad
-document.getElementById('busquedaCiudad').addEventListener('input', mostrarSugerencias);
-
-// Evento para registrar un nuevo objeto al hacer clic en el botón "Registrar"
-document.getElementById('registrarBtn').addEventListener('click', registrar);
-
-// Evento para eliminar un registro al hacer clic en el botón "Eliminar"
-document.getElementById('eliminarBtn').addEventListener('click', eliminar);
-
-// Evento para modificar un registro al hacer clic en el botón "Modificar"
-document.getElementById('modificarBtn').addEventListener('click', modificar);
+// ...
 
 // Cargar los registros desde el almacenamiento local al cargar la página
 cargarRegistrosDesdeLocalStorage();
+
+// Mostrar los IDs registrados en el campo de entrada del ID
+mostrarIDsRegistrados();
+
+// Mostrar todos los registros en el HTML al cargar la página
+mostrarTodoEnHTML();
+
+// Event listeners
+nombreElement.addEventListener('input', mostrarSugerencias);
+correoElement.addEventListener('input', mostrarSugerencias);
+telefonoElement.addEventListener('input', mostrarSugerencias);
+busquedaCiudadElement.addEventListener('input', mostrarSugerencias);
+direccionElement.addEventListener('input', mostrarSugerencias);
+generoMasculinoElement.addEventListener('change', mostrarSugerencias);
+generoFemeninoElement.addEventListener('change', mostrarSugerencias);
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  registrar();
+});
+eliminarButton.addEventListener('click', eliminar);
+modificarButton.addEventListener('click', modificar);

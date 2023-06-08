@@ -9,13 +9,13 @@
   <h1>Registrar</h1>
   <form id="registroForm">
     <label for="nombre">Nombre y Apellido:</label>
-    <input type="text" id="nombre" required><br>
+    <input type="text" id="nombre" autocomplete="off" required><br>
 
     <label for="correo">Correo:</label><br>
-    <input type="email" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Ingresa un correo válido" required><br>
+    <input type="email" id="correo" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Ingresa un correo válido" required><br>
 
     <label for="telefono">Teléfono:</label><br>
-    <input type="tel" id="telefono" pattern="[+]?(56)?[1-9][0-9]{8}" title="Ingresa un número de teléfono válido" required><br>
+    <input type="tel" id="telefono" autocomplete="off" pattern="[+]?(56)?[1-9][0-9]{8}" title="Ingresa un número de teléfono válido" required><br>
 
     <label>Género:</label><br><br>
     <div class="genero-container">
