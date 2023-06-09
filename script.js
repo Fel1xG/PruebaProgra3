@@ -190,6 +190,7 @@ function mostrarIDsRegistrados() {
   registros.forEach(registro => {
     const option = document.createElement('option');
     option.value = registro.id;
+    option.textContent = registro.id;
     idElement.appendChild(option);
   });
 }
