@@ -174,6 +174,9 @@ function mostrarTodoEnHTML() {
 
     registrosContainer.appendChild(registroDiv);
   });
+
+  // Mostrar los IDs registrados en el campo de entrada del ID
+  mostrarIDsRegistrados();
 }
 
 // Función para mostrar el mensaje de eliminación en el HTML
@@ -193,6 +196,11 @@ function mostrarIDsRegistrados() {
     option.textContent = registro.id;
     idElement.appendChild(option);
   });
+
+  // Si hay registros, seleccionar el primer ID por defecto
+  if (registros.length > 0) {
+    idElement.value = registros[0].id;
+  }
 }
 
 // Función para modificar un registro por ID
@@ -252,9 +260,6 @@ function modificar() {
 
 // Cargar los registros desde el almacenamiento local al cargar la página
 cargarRegistrosDesdeLocalStorage();
-
-// Mostrar los IDs registrados en el campo de entrada del ID
-mostrarIDsRegistrados();
 
 // Mostrar todos los registros en el HTML al cargar la página
 mostrarTodoEnHTML();

@@ -9,28 +9,29 @@
   <h1>Modificar Registro</h1>
   <form id="modificarForm">
     <label for="idModificacion">ID:</label>
-    <input type="number" id="idModificacion" required><br>    
+    <select id="idModificacion" required>
+      <option value="">Selecciona un ID</option>
+    </select><br><br>
 
     <label for="nombre">Nuevo nombre y Apellido:</label>
-    <input type="text" id="nombre" required><br>
-  
+    <input type="text" id="nombre" autocomplete="off" required><br>
+
     <label for="correo">Nuevo correo:</label>
-    <input type="email" id="correo" required><br>
-  
+    <input type="email" id="correo" autocomplete="off" required><br>
+
     <label for="telefono">Nuevo teléfono:</label>
-    <input type="tel" id="telefono" required><br>
-  
+    <input type="tel" id="telefono" autocomplete="off" required><br>
+
     <label>Nuevo Género:</label><br><br>
     <div class="genero-container">
       <div class="genero-buttons">
         <label for="genero-masculino">Masculino</label>
         <input type="radio" id="genero-masculino" name="genero" value="masculino" required>
-    
+
         <label for="genero-femenino">Femenino</label>
         <input type="radio" id="genero-femenino" name="genero" value="femenino" required>
       </div>
     </div><br>
-    
 
     <label for="ciudad">Nueva Ciudad:</label><br>
     <select id="busquedaCiudad">
@@ -81,13 +82,24 @@
       <option value="Viña del Mar">Viña del Mar</option>
       <option value="Villa Alemana">Villa Alemana</option>
     </select><br><br>
-    
-    
+
     <label for="direccion">Dirección:</label><br>
     <textarea id="direccion" required></textarea><br>
-    
+
     <button type="button" onclick="modificar()">Modificar</button>
   </form>  
   <script src="script.js"></script>
+  <script>
+    // Obtener el campo de selección de ID
+    const idSelect = document.getElementById('idModificacion');
+
+    // Mostrar los IDs registrados en el campo de selección
+    registros.forEach(registro => {
+      const option = document.createElement('option');
+      option.value = registro.id;
+      option.textContent = registro.id;
+      idSelect.appendChild(option);
+    });
+  </script>
 </body>
 </html>

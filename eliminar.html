@@ -6,10 +6,13 @@
   <meta charset="UTF-8">
 </head>
 <body>
-  <h1>Eliminar</h1>
+  <h1>Eliminar Registro</h1>
   <form id="eliminarForm">
     <label for="id">ID del registro a eliminar:</label>
-    <select id="id" autocomplete="off" required></select><br>
+    <select id="id" autocomplete="off" required>
+      <option value="">Selecciona un ID</option>
+    </select><br>
+    
 
     <button type="button" onclick="eliminar()">Eliminar</button>
   </form>
