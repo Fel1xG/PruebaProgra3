@@ -1,12 +1,13 @@
 /* Estilos generales */
 body {
-  background-image: url('https://images.pexels.com/photos/3293148/pexels-photo-3293148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url('https://img.freepik.com/vector-gratis/fondo-hexagonal-oscuro-color-degradado_79603-1410.jpg?w=1060&t=st=1686587068~exp=1686587668~hmac=06eaf1b92d3ad6b90e4ce4ce117dda46f39da0484475ddbcaab5d1954784a815');
   background-size: cover;
   background-repeat: no-repeat;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f2f2f2;
+  
 }
 
 h1 {
@@ -17,7 +18,7 @@ h1 {
   font-size: 36px; /* Tamaño de letra */
   letter-spacing: 2px; /* Espaciado entre letras */
   text-transform: uppercase; /* Convertir el texto en mayúsculas */
-  text-shadow: 2px 2px 4px rgb(250, 245, 245); /* Sombra de texto */
+  text-shadow: 2px 2px 4px rgb(227, 118, 15); /* Sombra de texto */
 }
 
 /* Resto de estilos */
@@ -281,19 +282,3 @@ button:hover {
   background-color: #555;
 }
 
-/* Estilos adicionales para dispositivos móviles */
-@media (max-width: 480px) {
-  .splide {
-    max-width: 100%;
-    padding: 10px;
-  }
-
-  .splide__slide a {
-    font-size: 14px;
-    padding: 5px;
-  }
-}
-
-#mensajeEliminacion {
-  color: #fff; /* Color blanco */
-}
