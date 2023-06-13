@@ -278,3 +278,8 @@ form.addEventListener('submit', (event) => {
 });
 eliminarButton.addEventListener('click', eliminar);
 modificarButton.addEventListener('click', modificar);
+
+function toggleDarkMode() {
+  var body = document.body;
+  body.classList.toggle("dark-mode");
+}

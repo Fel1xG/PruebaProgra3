@@ -18,7 +18,7 @@ h1 {
   font-size: 36px; /* Tamaño de letra */
   letter-spacing: 2px; /* Espaciado entre letras */
   text-transform: uppercase; /* Convertir el texto en mayúsculas */
-  text-shadow: 2px 2px 4px rgb(227, 118, 15); /* Sombra de texto */
+  text-shadow: 2px 2px 4px rgba(255, 98, 0, 0.897); /* Sombra de texto */
 }
 
 /* Resto de estilos */
@@ -48,7 +48,7 @@ nav ul {
 }
 
 .splide__slide a:hover {
-  background-color: #555;
+  background-color: #e1480b;
 }
 
 /* Estilos específicos de las páginas */
@@ -63,9 +63,9 @@ form#registroForm {
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #f90;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgb(254, 242, 242);
 }
 
 button#mostrarTodoBtn {
@@ -88,8 +88,11 @@ button#mostrarTodoBtn {
 }
 
 /* Registrar */
+h1 {
+  color: rgb(33, 32, 32);
+}
+
 form#registroForm {
-  background-image: url('burbujas.png'); /* Ruta de la imagen de fondo */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -188,7 +191,7 @@ button {
 }
 
 button:hover {
-  background-color: #ff8c00;
+  background-color: #605b55;
 }
 
 #registrosContainer {
@@ -238,6 +241,10 @@ button:hover {
 }
 
 
+#mensajeEliminacion {
+  color: white;
+}
+
 
 
 .splide__track {
@@ -275,7 +282,7 @@ button:hover {
 }
 
 .button:nth-child(4) {
-  background-color: #43a047;
+  background-color: #f76e0c;
 }
 
 .button:hover {
