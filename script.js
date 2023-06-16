@@ -69,7 +69,7 @@ function registrar() {
   const nombre = nombreElement.value.trim();
   const correo = correoElement.value.trim();
   const telefono = telefonoElement.value.trim();
-  const ciudad = busquedaCiudadElement.value.trim();
+    const ciudad = busquedaCiudadElement.value.trim();
   const direccion = direccionElement.value.trim();
   const genero = generoMasculinoElement.checked ? 'masculino' : 'femenino';
 
@@ -279,7 +279,34 @@ form.addEventListener('submit', (event) => {
 eliminarButton.addEventListener('click', eliminar);
 modificarButton.addEventListener('click', modificar);
 
-function toggleDarkMode() {
+function toggleTheme() {
   var body = document.body;
-  body.classList.toggle("dark-mode");
+  body.classList.toggle("dark-theme");
+
+  // Guardar la preferencia del usuario en el almacenamiento local
+  if (body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+
+  // Agregar o quitar la clase "dark-theme" al formulario
+  var forms = document.querySelectorAll("form");
+  forms.forEach(function (form) {
+    form.classList.toggle("dark-theme");
+  });
 }
+
+// Cargar el tema preferido del usuario al cargar la página
+window.addEventListener("DOMContentLoaded", function () {
+  var theme = localStorage.getItem("theme");
+  if (theme === "dark") {
+    document.body.classList.add("dark-theme");
+
+    // Agregar la clase "dark-theme" a los formularios
+    var forms = document.querySelectorAll("form");
+    forms.forEach(function (form) {
+      form.classList.add("dark-theme");
+    });
+  }
+});
