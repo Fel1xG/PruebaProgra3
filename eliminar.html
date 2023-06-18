@@ -7,21 +7,17 @@
 </head>
 <body>
   <h1>Eliminar Registro</h1>
+  <div id="mensajeEliminacion"></div>
   <form id="eliminarForm">
     <label for="id">ID del registro a eliminar:</label>
     <select id="id" autocomplete="off" required>
       <option value="">Selecciona un ID</option>
     </select><br>
-    
-
     <button type="button" onclick="eliminar()">Eliminar</button>
   </form>
 
-  <div id="mensajeEliminacion"></div>
-
   <script src="script.js"></script>
   <script>
-    
     // Obtener el campo de selección de ID
     const idSelect = document.getElementById('id');
 

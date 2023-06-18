@@ -134,6 +134,12 @@ function eliminar() {
   mostrarTodoEnHTML();
 }
 
+// Ocultar el contenedor de registros al cargar la página
+window.addEventListener('DOMContentLoaded', function() {
+  const registrosContainer = document.getElementById('registrosContainer');
+  registrosContainer.style.display = 'none';
+});
+
 // Función para mostrar todos los registros en el HTML
 function mostrarTodoEnHTML() {
   const registrosContainer = document.getElementById('registrosContainer');
@@ -174,6 +180,12 @@ function mostrarTodoEnHTML() {
 
     registrosContainer.appendChild(registroDiv);
   });
+
+  // Mostrar el contenedor de registros al hacer clic en el botón
+  registrosContainer.style.display = 'block';
+
+
+  
 
   // Mostrar los IDs registrados en el campo de entrada del ID
   mostrarIDsRegistrados();
@@ -221,6 +233,9 @@ function modificar() {
   const ciudad = busquedaCiudadElement.value.trim();
   const direccion = direccionElement.value.trim();
   const genero = generoMasculinoElement.checked ? 'masculino' : 'femenino';
+
+  // Establece el mensaje de registro modificado
+  document.getElementById('mensaje').textContent = "Registro Modificado Correctamente";
 
   if (nombre === '' || correo === '' || telefono === '' || ciudad === '' || direccion === '') {
     console.log('Todos los campos son requeridos.');
@@ -310,3 +325,4 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+

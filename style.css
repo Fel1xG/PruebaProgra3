@@ -61,7 +61,7 @@ button#mostrarTodoBtn,
 form#registroForm {
   max-width: 400px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 20px;
   border: 1px solid #f90;
   border-radius: 5px;
@@ -198,8 +198,13 @@ button:hover {
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(230, 118, 14, 0.712);
 }
+
+.oculto {
+  display: none;
+}
+
 
 .genero-container {
   background-color: #f9f9f9;
@@ -289,3 +294,8 @@ button:hover {
   background-color: #555;
 }
 
+.mensaje-container {
+  color: white;
+  padding: 10px;
+  margin-top: -20px;
+}
